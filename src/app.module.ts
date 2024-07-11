@@ -5,12 +5,14 @@ import { DataSource, DataSourceOptions } from 'typeorm';
 import appConfig from './config/app.config';
 import databaseConfig from './database/config/database.config';
 import { TypeOrmConfigService } from './database/typeorm-config.service';
+import fileConfig from './files/config/file.config';
+import { FilesModule } from './files/files.module';
 
 @Module({
   imports: [
     ConfigModule.forRoot({
       isGlobal: true,
-      load: [appConfig, databaseConfig],
+      load: [appConfig, databaseConfig, fileConfig],
       envFilePath: ['.env'],
     }),
     TypeOrmModule.forRootAsync({
@@ -19,6 +21,7 @@ import { TypeOrmConfigService } from './database/typeorm-config.service';
         return new DataSource(options).initialize();
       },
     }),
+    FilesModule,
   ],
   controllers: [],
   providers: [],
