@@ -7,6 +7,7 @@ import databaseConfig from './database/config/database.config';
 import { TypeOrmConfigService } from './database/typeorm-config.service';
 import fileConfig from './files/config/file.config';
 import { FilesModule } from './files/files.module';
+import { UsersModule } from './users/users.module';
 
 @Module({
   imports: [
@@ -21,6 +22,7 @@ import { FilesModule } from './files/files.module';
         return new DataSource(options).initialize();
       },
     }),
+    UsersModule,
     FilesModule,
   ],
   controllers: [],
